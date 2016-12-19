@@ -4,58 +4,61 @@ namespace Craft;
 class LocaleRedirectorService extends BaseApplicationComponent
 {
 
-	protected $expires;
+  protected $path;
+  protected $querystring;
+  protected $expires;
 
-	// Public Methods
-	// =========================================================================
+  // Public Methods
+  // =========================================================================
 
-	/**
-	 * Constructor
-	 */
-	public function __construct()
-	{
-		$this->expires = 60 * 60 * 24 * 365; // 1 year
-	}
+  /**
+   * Constructor
+   */
+  public function __construct()
+  {
+    $this->path = craft()->request->getPath();
+    $this->querystring = craft()->request->getQueryStringWithoutPath();
+    $this->expires = 60 * 60 * 24 * 365; // 1 year
+  }
 
-	/**
-	 * Redirect to provided locale
-	 * @param string $locale
-	 */
-	public function redirectToLocale($locale)
-	{
-		$url = $this->newUrl($locale);
-		$this->setCookie('locale', $locale, time() + $this->expires);
-		craft()->request->redirect($url, true, 302);
-	}
+  /**
+   * Redirect to provided locale
+   * @param string $locale
+   */
+  public function redirectToLocale($locale)
+  {
+    $url = $this->newUrl($locale);
+    $this->setCookie('locale', $locale, time() + $this->expires);
+    craft()->request->redirect($url, true, 302);
+  }
 
-	// Private Methods
-	// =========================================================================
+  // Private Methods
+  // =========================================================================
 
-	/**
-	 * Return a new url with locale included
-	 * @param string $locale
-	 */
-	private function newUrl($locale)
-	{
-		$path = $this->path = craft()->request->getPath();
-		$params = $this->querystring = craft()->request->getQueryStringWithoutPath();
+  /**
+   * Return a new url with locale included
+   * @param string $locale
+   */
+  private function newUrl($locale)
+  {
+    $qs = $this->querystring ? '?' . $this->querystring : '';
 
-		return UrlHelper::getSiteUrl($path, $params, null, $locale);
-	}
+    return UrlHelper::getSiteUrl($this->path, null, null, $locale) . $qs;
+  }
 
-	/**
-	 * Set a cookie
-	 * @param string $name
-	 * @param string $value
-	 * @param int $expire
-	 * @param string $path
-	 * @param string $domain
-	 * @param mixed $secure
-	 * @param mixed $httponly
-	 */
-	private function setCookie($name = "", $value = "", $expire = 0, $path = "/", $domain = "", $secure = false, $httponly = false)
-	{
-		setcookie($name, $value, (int) $expire, $path, $domain, $secure, $httponly);
-		$_COOKIE[$name] = $value;
-	}
+  /**
+   * Set a cookie
+   * @param string $name
+   * @param string $value
+   * @param int $expire
+   * @param string $path
+   * @param string $domain
+   * @param mixed $secure
+   * @param mixed $httponly
+   */
+  private function setCookie($name = "", $value = "", $expire = 0, $path = "/", $domain = "", $secure = false, $httponly = false)
+  {
+    setcookie($name, $value, (int) $expire, $path, $domain, $secure, $httponly);
+    $_COOKIE[$name] = $value;
+  }
 }

@@ -32,6 +32,34 @@ class LocaleRedirectorService extends BaseApplicationComponent
     craft()->request->redirect($url, true, 302);
   }
 
+  /**
+   * Tries to find a match between the browser's preferred locales and the
+   * site's configured locales.
+   * Craft provides getTranslatedBrowserLanguage(), but it matches against all
+   * of Craft's application locales using getAppLocaleIds()
+   *
+   * @return string
+   */
+  public function getBrowserLanguageMatch()
+  {
+    $browserLanguages = craft()->request->getBrowserLanguages();
+
+    if ($browserLanguages)
+    {
+      $siteLocaleIds = craft()->i18n->getSiteLocaleIds();
+
+      foreach ($browserLanguages as $language)
+      {
+        if (in_array($language, $siteLocaleIds))
+        {
+          return $language;
+        }
+      }
+    }
+
+    return false;
+  }
+
   // Private Methods
   // =========================================================================
 

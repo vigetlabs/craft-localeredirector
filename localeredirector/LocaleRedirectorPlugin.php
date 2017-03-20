@@ -15,7 +15,7 @@ class LocaleRedirectorPlugin extends BasePlugin
 
 	public function getVersion()
 	{
-		return '1.0.0';
+		return '1.0.1';
 	}
 
 	public function getDeveloper()
@@ -44,7 +44,7 @@ class LocaleRedirectorPlugin extends BasePlugin
 		if(!craft()->isConsole() && craft()->request->isSiteRequest() && !craft()->request->isLivePreview()) {
 			$currentLocale = craft()->i18n->getLocaleById(craft()->language);
 			$localeCookie = isset($_COOKIE['locale']) ? $_COOKIE['locale'] : null;
-			$browserLanguageMatch = craft()->getTranslatedBrowserLanguage();
+			$browserLanguageMatch = craft()->localeRedirector->getBrowserLanguageMatch();
 
 			// if there is a locale cookie
 			// redirect if it doesn't match the locale of the page requested

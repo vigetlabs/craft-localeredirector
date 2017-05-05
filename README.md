@@ -2,23 +2,23 @@
 
 Locale Redirector detects the language preferences set by the user, via cookie or browser settings, and redirects to the appropriate localized version of the page requested, if the locale has been enabled for the site.
 
-1. **Cookie:** If the user's language preference has been saved in a cookie (named locale), and the requested url is for a different locale currently enabled for the site, the user will be redirected to the correct locale for the requested url. For example:
+1. **Cookie:** If the user's language preference has been saved in a cookie named locale, and the requested url is for a different locale currently enabled for the site, the user will be redirected to the locale saved in the cookie, for the requested url. For example:
 
   ```
-  Requested URL: http://site.com/
-  Cookie: es
-  Site Locales: en, fr, de, pt, es
-  Redirects To: http://site.com/es
+  Requested URL: http://site.com/blog/article-title
+  Cookie Present: es
+  Configured Site Locales: en, fr, de, pt, es
+  Redirects To: http://site.com/es/blog/article-title
   ```
 
 2. **Browser Language Settings:** If the language preference has not yet been saved to a cookie, then the plugin will attempt to find a match between the browser's preferred languages and the site's enabled locales. If a match is found, the user will be redirected to the matched language setting. For example:
 
   ```
-  Requested URL: http://site.com/
-  Cookie: n/a
+  Requested URL: http://site.com/blog/article-title
+  Cookie Present: n/a
   Browser Languages: es, en
-  Site Locales: en, fr, de, pt, es
-  Redirects To: http://site.com/es
+  Configured Site Locales: en, fr, de, pt, es
+  Redirects To: http://site.com/es/blog/article-title
   ```
 
 ## Installation
@@ -32,13 +32,23 @@ To install Locale Redirector, follow these steps:
 
 Locale Redirector works on Craft 2.5.x and Craft 2.6.x.
 
-## Locale Redirector Roadmap
+## Important Notes
+
+This plugin assumes that language links are available to the user. You can build this list of links any way you want, using custom template code with advanced logic, but the simplest approach is to use a craft plugin called [Language Link](https://github.com/lindseydiloreto/craft-languagelink). It provides an easy way to switch between languages by automatically outputting the correct links to the same page in different locales.
+
+You can then set a locale cookie when one of these links is clicked, via JavaScript. You can use document.cookie for this, or use the [js-cookie](https://github.com/js-cookie/js-cookie) utility, which couldn't be simpler. To set a locale cookie to "es" and have it exipre in 1 year:
+
+```
+Cookies.set('locale', 'es', { expires: 365 });
+```
+
+## Roadmap
 
 Some things to do, and ideas for potential features:
 
 * Make locale cookie name and expiration configurable
 
-## Locale Redirector Changelog
+## Changelog
 
 ### 1.0.0 -- 2016.10.03
 

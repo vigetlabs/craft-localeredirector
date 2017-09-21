@@ -29,8 +29,10 @@ class LocaleRedirectorService extends BaseApplicationComponent
   {
     if (strpos(craft()->request->getPath(), '.json') == false) {
       $url = $this->newUrl($locale);
-      $this->setCookie('locale', $locale, time() + $this->expires);
-      craft()->request->redirect($url, true, 302);
+      if ($url !== false) {
+        $this->setCookie('locale', $locale, time() + $this->expires);
+        craft()->request->redirect($url, true, 302);
+      }
     }
   }
 
@@ -77,9 +79,13 @@ class LocaleRedirectorService extends BaseApplicationComponent
     $criteria = craft()->elements->getCriteria(ElementType::Entry);
     $criteria->slug = $lastSegment;
     $entry = $criteria->first();
-    $new = craft()->elements->getElementById($entry->id, ElementType::Entry, $locale);
 
-    return UrlHelper::getSiteUrl($new->uri, null, null, $locale) . $qs;
+    if (!empty($entry)) {
+      $new = craft()->elements->getElementById($entry->id, ElementType::Entry, $locale);
+      return UrlHelper::getSiteUrl($new->uri, null, null, $locale) . $qs;
+    } else {
+      return false;
+    }
   }
 
   /**

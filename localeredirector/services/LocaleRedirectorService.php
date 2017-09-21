@@ -27,9 +27,11 @@ class LocaleRedirectorService extends BaseApplicationComponent
    */
   public function redirectToLocale($locale)
   {
-    $url = $this->newUrl($locale);
-    $this->setCookie('locale', $locale, time() + $this->expires);
-    craft()->request->redirect($url, true, 302);
+    if (strpos(craft()->request->getPath(), '.json') == false) {
+      $url = $this->newUrl($locale);
+      $this->setCookie('locale', $locale, time() + $this->expires);
+      craft()->request->redirect($url, true, 302);
+    }
   }
 
   /**

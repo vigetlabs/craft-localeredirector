@@ -50,6 +50,14 @@ Some things to do, and ideas for potential features:
 
 ## Changelog
 
+### 1.0.2 -- 2017.11.30
+
+* Ensures that correct redirects happen when entry slugs are different
+
+### 1.0.1 -- 2017.03.20
+
+* Fixes improper language matches
+
 ### 1.0.0 -- 2016.10.03
 
 * Initial release

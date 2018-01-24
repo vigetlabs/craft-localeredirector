@@ -2,7 +2,7 @@
     {
         "version": "1.0.2",
         "downloadUrl": "https://github.com/vigetlabs/craft-localeredirector/archive/1.0.2.zip",
-        "date": "2017-11-30:00:00-00:00",
+        "date": "2017-11-30T19:38:51-00:00",
         "notes": [
             "Ensures that correct redirects happen when entry slugs are different"
         ]
@@ -10,7 +10,7 @@
     {
         "version": "1.0.1",
         "downloadUrl": "https://github.com/vigetlabs/craft-localeredirector/archive/1.0.1.zip",
-        "date": "2017-03-20:00:00-00:00",
+        "date": "2017-03-20T16:01:40-00:00",
         "notes": [
             "Fixing improper language match"
         ]

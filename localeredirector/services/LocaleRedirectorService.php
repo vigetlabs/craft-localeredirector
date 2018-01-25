@@ -27,7 +27,7 @@ class LocaleRedirectorService extends BaseApplicationComponent
    */
   public function redirectToLocale($locale)
   {
-    if (strpos(craft()->request->getPath(), '.json') == false) {
+    if (!craft()->request->isAjaxRequest()) {
       $url = $this->newUrl($locale);
       if ($url !== false) {
         $this->setCookie('locale', $locale, time() + $this->expires);

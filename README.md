@@ -50,6 +50,10 @@ Some things to do, and ideas for potential features:
 
 ## Changelog
 
+### 1.0.3 -- 2018.02.01
+
+* Fixed date formatting in releases.json to ensure future updates show up in the Craft admin
+
 ### 1.0.2 -- 2017.11.30
 
 * Ensures that correct redirects happen when entry slugs are different

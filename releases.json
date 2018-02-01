@@ -1,5 +1,13 @@
 [
     {
+        "version": "1.0.3",
+        "downloadUrl": "https://github.com/vigetlabs/craft-localeredirector/archive/1.0.3.zip",
+        "date": "2018-02-01T12:09:26-05:00",
+        "notes": [
+            "Fixed date formatting in releases.json to ensure future updates show up in the Craft admin"
+        ]
+    },
+    {
         "version": "1.0.2",
         "downloadUrl": "https://github.com/vigetlabs/craft-localeredirector/archive/1.0.2.zip",
         "date": "2017-11-30T19:38:51-00:00",

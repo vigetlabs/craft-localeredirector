@@ -74,15 +74,14 @@ class LocaleRedirectorService extends BaseApplicationComponent
   private function newUrl($locale)
   {
     $qs = $this->querystring ? '?' . $this->querystring : '';
-    $segments = craft()->request->segments;
-    $lastSegment = end($segments);
-    $criteria = craft()->elements->getCriteria(ElementType::Entry);
-    $criteria->slug = $lastSegment;
-    $entry = $criteria->first();
+    $element = craft()->urlManager->getMatchedElement();
 
-    if (!empty($entry)) {
-      $new = craft()->elements->getElementById($entry->id, ElementType::Entry, $locale);
-      return UrlHelper::getSiteUrl($new->uri, null, null, $locale) . $qs;
+    if ($element) {
+      $newElement = craft()->elements->getElementById($element->id, ElementType::Entry, $locale);
+      $isHome = $newElement->uri == '__home__';
+      $path = !$isHome ? $newElement->uri : '';
+
+      return UrlHelper::getSiteUrl($path, null, null, $locale) . $qs;
     } else {
       return false;
     }

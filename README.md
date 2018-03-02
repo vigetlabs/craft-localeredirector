@@ -50,6 +50,10 @@ Some things to do, and ideas for potential features:
 
 ## Changelog
 
+### 1.0.4 -- 2018.03.02
+
+* Redirects now occur correctly for single sections
+
 ### 1.0.3 -- 2018.02.01
 
 * Fixed date formatting in releases.json to ensure future updates show up in the Craft admin

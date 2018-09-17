@@ -77,7 +77,7 @@ class LocaleRedirectorService extends BaseApplicationComponent
     $element = craft()->urlManager->getMatchedElement();
 
     if ($element) {
-      $newElement = craft()->elements->getElementById($element->id, ElementType::Entry, $locale);
+      $newElement = craft()->elements->getElementById($element->id, $element->elementType, $locale);
       $isHome = $newElement->uri == '__home__';
       $path = !$isHome ? $newElement->uri : '';
 

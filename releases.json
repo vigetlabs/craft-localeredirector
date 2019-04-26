@@ -1,5 +1,13 @@
 [
     {
+        "version": "1.0.5",
+        "downloadUrl": "https://github.com/vigetlabs/craft-localeredirector/archive/1.0.5.zip",
+        "date": "2019-04-26T00:00:00-05:00",
+        "notes": [
+            "Redirects now work for category urls [#13](https://github.com/vigetlabs/craft-localeredirector/issues/13)"
+        ]
+    },
+    {
         "version": "1.0.4",
         "downloadUrl": "https://github.com/vigetlabs/craft-localeredirector/archive/1.0.4.zip",
         "date": "2018-03-02T09:43:57-05:00",

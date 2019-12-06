@@ -1,3 +1,11 @@
+[![No Maintenance Intended](http://unmaintained.tech/badge.svg)](http://unmaintained.tech/)
+
+# DEPRECATED
+
+This Craft CMS 2.x plugin is no longer supported, but it is fully functional, and you may continue to use it as you see fit. The license also allows you to fork it and make changes as needed for legacy support reasons.
+
+For Craft CMS 3.x functionality, consider Pierre Stoffe's [Language Redirector](https://github.com/pierrestoffe/craft-language-redirector) plugin, which can also be installed via the Craft Plugin Store in the Craft CP.
+
 # Locale Redirector plugin for Craft CMS
 
 Locale Redirector detects the language preferences set by the user, via cookie or browser settings, and redirects to the appropriate localized version of the page requested, if the locale has been enabled for the site.
@@ -42,14 +50,10 @@ You can then set a locale cookie when one of these links is clicked, via JavaScr
 Cookies.set('locale', 'es', { expires: 365 });
 ```
 
-## Roadmap
-
-Some things to do, and ideas for potential features:
-
-* Make locale cookie name and expiration configurable
+## Credits
 
 <a href="http://code.viget.com">
   <img src="http://code.viget.com/github-banner.png" alt="Code At Viget">
 </a>
 
-Visit [code.viget.com](http://code.viget.com) to see more projects from [Viget](https://viget.com).
+Visit [code.viget.com](https://code.viget.com) to see more projects from [Viget](https://viget.com).
